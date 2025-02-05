@@ -38,4 +38,4 @@ if __name__ == '__main__':
     # Create a static folder if it doesn't exist
     if not os.path.exists('static'):
         os.makedirs('static')
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=4000)
