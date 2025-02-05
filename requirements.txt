@@ -13,3 +13,6 @@ uvicorn
 duckdb
 SQLAlchemy
 aiohttp
+Flask 
+jsonify
+
