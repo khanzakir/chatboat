@@ -16,3 +16,4 @@ aiohttp
 Flask 
 jsonify
 langchain-community
+flask_cors

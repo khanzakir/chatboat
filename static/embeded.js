@@ -145,7 +145,7 @@
         userInput.value = ""; // Clear input field
   
         try {
-          const response = await fetch("http://127.0.0.1:5000/get_response", {
+          const response = await fetch("https://chatboat-cprn.onrender.com/get_response", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
