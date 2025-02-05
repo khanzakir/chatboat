@@ -9,7 +9,7 @@ load_dotenv()
 base_dir = os.path.dirname(os.path.abspath(__file__))
 
 # Construct the path to your JSON file relative to the script's location
-json_file_path = os.path.join(base_dir, "GENZMarketing.json")
+JSON_FILE_PATH = os.path.join(base_dir, "GENZMarketing.json")
 
 def crew_workflow(query):
     # Step 1: Vectorize provided data
