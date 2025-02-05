@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GenZ Marketing Chatbot</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="chat-container">
+      <div id="chat-box" class="chat-box">
+        <!-- Messages will appear here -->
+      </div>
+      <input
+        type="text"
+        id="user-input"
+        class="user-input"
+        placeholder="What is your question?"
+      />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+      const chatBox = document.getElementById("chat-box");
+
+      function displayMessage(role, content) {
+        const messageDiv = document.createElement("div");
+        messageDiv.classList.add(
+          "chat-message",
+          role === "user" ? "user-message" : "assistant-message"
+        );
+        messageDiv.innerHTML = `<span>${
+          role === "user" ? "User" : "Assistant"
+        }:</span> ${content}`;
+        chatBox.appendChild(messageDiv);
+        chatBox.scrollTop = chatBox.scrollHeight; // Scroll to the bottom
+      }
+
+      async function sendMessage() {
+        const userInput = document.getElementById("user-input").value.trim();
+        if (userInput) {
+          displayMessage("user", userInput);
+          document.getElementById("user-input").value = ""; // Clear input field
+
+          try {
+            const response = await fetch("/get_response", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({ query: userInput }),
+            });
+            const result = await response.json();
+
+            if (response.ok) {
+              let responseText = result.response;
+              let index = 0;
+              let partialResponse = "";
+
+              const interval = setInterval(() => {
+                partialResponse += responseText[index];
+                displayMessage("assistant", partialResponse);
+                index++;
+                if (index === responseText.length) {
+                  clearInterval(interval);
+                }
+              }, 100); // Simulate typing with a delay
+            } else {
+              displayMessage(
+                "assistant",
+                "Sorry, there was an error processing your request."
+              );
+            }
+          } catch (error) {
+            displayMessage("assistant", "Sorry, something went wrong.");
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GenZ Marketing Chatbot</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="chat-container">
+        <div id="chat-box" class="chat-box">
+            <!-- Messages will appear here -->
+        </div>
+        <div class="user-input-container">
+            <input type="text" id="user-input" class="user-input" placeholder="What is your question?" />
+            <button onclick="sendMessage()" class="send-button">Send</button>
+        </div>
+        
+        <script>
+            // Get the input field
+            const userInputField = document.getElementById("user-input");
+        
+            // Add an event listener for 'Enter' key press
+            userInputField.addEventListener("keypress", function(event) {
+                // Check if the key pressed is 'Enter'
+                if (event.key === "Enter") {
+                    event.preventDefault();  // Prevent the default action (form submission or other)
+                    sendMessage();  // Call the sendMessage function
+                }
+            });
+        </script>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+python-dotenv
+openai
+langchain
+chromadb
+google-api-python-client
+crewai
+tiktoken
+numpy
+pandas
+tqdm
+fastapi
+uvicorn
+duckdb
+SQLAlchemy
+aiohttp
