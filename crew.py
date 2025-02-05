@@ -5,7 +5,11 @@ from tasks import vectorize_data, design_retriever, implement_chatbot, format_re
 # Load environment variables
 load_dotenv()
 
-JSON_FILE_PATH = r"C:\Users\Zakir Khan\Desktop\chatbot\GENZMarketing.json"
+# Get the current directory of the script
+base_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Construct the path to your JSON file relative to the script's location
+json_file_path = os.path.join(base_dir, "GENZMarketing.json")
 
 def crew_workflow(query):
     # Step 1: Vectorize provided data
