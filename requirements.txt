@@ -15,4 +15,4 @@ SQLAlchemy
 aiohttp
 Flask 
 jsonify
-
+langchain-community
